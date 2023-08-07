@@ -1,3 +1,4 @@
+
 <%--
   Created by IntelliJ IDEA.
   User: Ivaneskins
@@ -6,6 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
@@ -22,11 +24,12 @@
         <th>email</th>
 
     </tr>
-    <c:forEach var="ttt" items="${usersList}">
+    <c:forEach var="ttt" items="${allUsers}">
         <tr>
             <td>${ttt.id}</td>
             <td>${ttt.name}</td>
             <td>${ttt.email}</td>
+<%--            <td>${ttt.toString()}</td>--%>
 <%--            <td>--%>
 <%--                <a href="/edit/${film.id}">edit</a>--%>
 <%--                <a href="/delete/${film.id}">delete</a>--%>
@@ -34,8 +37,8 @@
         </tr>
     </c:forEach>
 
-    <h3>${usersList}</h3>
-    <h3>"${usersList}"</h3>
+<%--    <h3>${usersList}</h3>--%>
+<%--    <h3>"${usersList}"</h3>--%>
 </table>
 
 

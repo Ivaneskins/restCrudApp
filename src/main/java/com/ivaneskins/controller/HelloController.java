@@ -5,6 +5,7 @@ import com.ivaneskins.service.UserService;
 import com.ivaneskins.service.UserServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -16,30 +17,23 @@ public class HelloController {
     @Autowired
     private UserService userService;
 
-//    private static User user = new User("Ivan", "Ivaneskins@test.ru");
+//    @RequestMapping(value = "/", method = RequestMethod.GET)
+//    public String Hello() {
+//        List<User> usersList = userService.getAllUsers();
+//
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.setViewName("allUsersView");
+//        modelAndView.addObject("allUsers", usersList);
+//
+//        usersList.stream().forEach(System.out::println);
+//        return "allUsersView";
+//    }
+
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String Hello() {
+    public String Hello(Model model) {
         List<User> usersList = userService.getAllUsers();
-
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("allUsers");
-        modelAndView.addObject("usersList", usersList);
-
-        usersList.stream().forEach(System.out::println);
-        return "allUsers";
+        model.addAttribute("allUsers", usersList);
+        return "allUsersView";
     }
-
-    @RequestMapping(value = "/xxx", method = RequestMethod.GET)
-    public String XXX() {
-        return "xxx";
-    }
-
-//    @RequestMapping(value = "/edit", method = RequestMethod.GET)
-//    public ModelAndView editPage() {
-//        ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.setViewName("editPage");
-//        modelAndView.addObject("xxx", user);
-//        return modelAndView;
-//    }
 }
