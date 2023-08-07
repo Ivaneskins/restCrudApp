@@ -4,6 +4,7 @@ import com.ivaneskins.dao.UserDao;
 import com.ivaneskins.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 import java.util.List;
@@ -14,11 +15,13 @@ public class UserServiceImp implements UserService {
     private UserDao userDao;
 
     @Override
+    @Transactional
     public List<User> getAllUsers() {
         return userDao.getAllUsers();
     }
 
     @Override
+    @Transactional
     public void addUser(User user) {
         userDao.addUser(user);
     }
@@ -29,7 +32,14 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public void deleteUser(User user) {
-        userDao.deleteUser(user);
+    @Transactional
+    public void deleteUser(int id) {
+        userDao.deleteUser(id);
+    }
+
+    @Override
+    @Transactional
+    public User getUser(int id) {
+        return userDao.getUser(id);
     }
 }

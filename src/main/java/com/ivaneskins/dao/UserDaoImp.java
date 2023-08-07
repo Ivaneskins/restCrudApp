@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import java.util.List;
@@ -17,7 +18,6 @@ public class UserDaoImp implements UserDao {
 
     @Override
     @SuppressWarnings("unchecked")
-    @Transactional
     public List<User> getAllUsers() {
         TypedQuery<User> query = entityManager.createQuery("SELECT u FROM User u", User.class);
         return query.getResultList();
@@ -25,7 +25,11 @@ public class UserDaoImp implements UserDao {
 
     @Override
     public void addUser(User user) {
-
+        if (user.getId() != 0) {
+            entityManager.merge(user);
+        } else {
+            entityManager.persist(user);
+        }
     }
 
     @Override
@@ -34,7 +38,17 @@ public class UserDaoImp implements UserDao {
     }
 
     @Override
-    public void deleteUser(User user) {
+    public void deleteUser(int id) {
+//        User user = getUser(id);
+//        entityManager.remove(user);
 
+        Query query = entityManager.createQuery("DELETE from User WHERE id =:userId");
+        query.setParameter("userId", id);
+        query.executeUpdate();
+    }
+
+    @Override
+    public User getUser(int id) {
+        return entityManager.find(User.class, id);
     }
 }
