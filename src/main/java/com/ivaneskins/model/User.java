@@ -1,13 +1,23 @@
 package com.ivaneskins.model;
 
-public class User {
+import javax.persistence.*;
 
+@Entity
+@Table(name = "user")
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
 
+    @Column(name = "name")
     private String name;
 
+    @Column(name = "email")
     private String email;
 
+    public User() {
+    }
 
     public User(String name, String email) {
         this.name = name;

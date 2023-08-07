@@ -3,12 +3,18 @@ package com.ivaneskins.service;
 import com.ivaneskins.dao.UserDao;
 import com.ivaneskins.dao.UserDaoImp;
 import com.ivaneskins.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
+@Service
 public class UserServiceImp implements UserService {
 
-    private UserDao userDao = new UserDaoImp();
+    @Autowired
+    private UserDao userDao;
+
+    @Transactional //метод должен выполняться в транзакции (без этого Hibernate работать откажется):
     @Override
     public List<User> getAllUsers() {
         return userDao.getAllUsers();
