@@ -14,7 +14,7 @@ public class UserServiceImp implements UserService {
     @Autowired
     private UserDao userDao;
 
-    @Transactional //метод должен выполняться в транзакции (без этого Hibernate работать откажется):
+//    @Transactional //метод должен выполняться в транзакции (без этого Hibernate работать откажется):
     @Override
     public List<User> getAllUsers() {
         return userDao.getAllUsers();

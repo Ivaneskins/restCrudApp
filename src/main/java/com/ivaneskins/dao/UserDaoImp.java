@@ -5,6 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,7 @@ public class UserDaoImp implements UserDao {
 
     @Override
     @SuppressWarnings("unchecked")
+    @Transactional
     public List<User> getAllUsers() {
         Session session = sessionFactory.getCurrentSession();
         return session.createQuery("from User").list();
