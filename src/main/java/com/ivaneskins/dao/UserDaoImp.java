@@ -2,7 +2,6 @@ package com.ivaneskins.dao;
 
 import com.ivaneskins.model.User;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -39,9 +38,6 @@ public class UserDaoImp implements UserDao {
 
     @Override
     public void deleteUser(int id) {
-//        User user = getUser(id);
-//        entityManager.remove(user);
-
         Query query = entityManager.createQuery("DELETE from User WHERE id =:userId");
         query.setParameter("userId", id);
         query.executeUpdate();
