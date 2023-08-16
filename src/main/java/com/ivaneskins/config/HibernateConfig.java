@@ -33,6 +33,7 @@ public class HibernateConfig {
         dataSource.setUrl("jdbc:mysql://localhost:3306/users?serverTimezone=Europe/Minsk&useSSL=false");
         dataSource.setUsername("root");
         dataSource.setPassword("root");
+        dataSource.setConnectionProperties(hibernateProperties());
 
         return dataSource;
     }
